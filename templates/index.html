@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Home - Hotel Management{% endblock %}
+{% block content %}
+<div class="text-center">
+  <h1 class="display-4">Welcome to Our Hotel</h1>
+  <p class="lead">Experience luxury and comfort at affordable prices.</p>
+  <img src="{{ url_for('static', filename='images/banner.jpg') }}" class="img-fluid rounded mb-4" alt="Hotel">
+  <div>
+    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg me-2">User Login</a>
+    <a href="{{ url_for('admin_login') }}" class="btn btn-secondary btn-lg">Admin Login</a>
+  </div>
+</div>
+{% endblock %}

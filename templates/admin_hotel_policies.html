@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Admin - Hotel Policies{% endblock %}
+{% block content %}
+<h2 class="mb-4">Manage Hotel Policies</h2>
+
+<!-- Form to Add New Policy -->
+<form action="{{ url_for('add_policy') }}" method="post" class="mb-4">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <input type="text" name="policy_id" class="form-control" placeholder="Policy ID" required>
+    </div>
+    <div class="col-md-4">
+      <input type="text" name="policy_name" class="form-control" placeholder="Policy Name" required>
+    </div>
+    <div class="col-md-4">
+      <input type="text" name="description" class="form-control" placeholder="Description" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Add Policy</button>
+</form>
+
+<!-- Table Listing Hotel Policies -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Policy ID</th>
+      <th>Policy Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for policy in policies %}
+    <tr>
+      <td>{{ policy.policy_id }}</td>
+      <td>{{ policy.policy_name }}</td>
+      <td>{{ policy.description }}</td>
+      <td>
+        <a href="#" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

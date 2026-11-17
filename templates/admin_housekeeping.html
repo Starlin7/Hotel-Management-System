@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Admin - Housekeeping{% endblock %}
+{% block content %}
+<h2 class="mb-4">Manage Housekeeping</h2>
+
+<!-- Form to Add Housekeeping Record -->
+<form action="{{ url_for('add_housekeeping') }}" method="post" class="mb-4">
+  <div class="row g-3">
+    <div class="col-md-3">
+      <input type="text" name="housekeeping_id" class="form-control" placeholder="Housekeeping ID" required>
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="room_id" class="form-control" placeholder="Room ID" required>
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="service_id" class="form-control" placeholder="Service ID" required>
+    </div>
+    <div class="col-md-3">
+      <input type="date" name="service_date" class="form-control" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Add Record</button>
+</form>
+
+<!-- Table Listing Housekeeping Records -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Housekeeping ID</th>
+      <th>Room ID</th>
+      <th>Service ID</th>
+      <th>Service Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for hk in housekeeping %}
+    <tr>
+      <td>{{ hk.housekeeping_id }}</td>
+      <td>{{ hk.room_id }}</td>
+      <td>{{ hk.service_id }}</td>
+      <td>{{ hk.service_date }}</td>
+      <td>
+        <a href="#" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

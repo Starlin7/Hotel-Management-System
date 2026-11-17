@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Admin - Rooms{% endblock %}
+{% block content %}
+<h2 class="mb-4">Manage Rooms</h2>
+
+<!-- Form to Add New Room -->
+<form action="{{ url_for('add_room') }}" method="post" class="mb-4">
+  <div class="row g-3">
+    <div class="col-md-2">
+      <input type="text" class="form-control" name="room_id" placeholder="Room ID" required>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control" name="room_number" placeholder="Room Number" required>
+    </div>
+    <div class="col-md-2">
+      <input type="text" class="form-control" name="room_type_id" placeholder="Room Type ID" required>
+    </div>
+    <div class="col-md-1">
+      <input type="number" class="form-control" name="floor" placeholder="Floor" required>
+    </div>
+    <div class="col-md-1">
+      <input type="number" class="form-control" name="capacity" placeholder="Cap" required>
+    </div>
+    <div class="col-md-2">
+      <input type="number" step="0.01" class="form-control" name="price_per_night" placeholder="Price/Night" required>
+    </div>
+    <div class="col-md-2">
+      <select class="form-select" name="status" required>
+        <option value="Available">Available</option>
+        <option value="Occupied">Occupied</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Add Room</button>
+</form>
+
+<!-- Display Existing Rooms -->
+<div class="row">
+  {% for room in rooms %}
+  <div class="col-md-4 mb-4">
+    <div class="card shadow">
+      <img src="{{ url_for('static', filename='images/room_default.jpg') }}" class="card-img-top" alt="Room Image">
+      <div class="card-body">
+        <h5 class="card-title">Room {{ room.room_number }}</h5>
+        <p class="card-text">
+          Type: {{ room.room_type_id }}<br>
+          Floor: {{ room.floor }}<br>
+          Capacity: {{ room.capacity }}<br>
+          Price/Night: ₹{{ room.price_per_night }}<br>
+          Status: {{ room.status }}
+        </p>
+        <a href="{{ url_for('edit_room', room_id=room.room_id) }}" class="btn btn-warning btn-sm">Edit</a>
+        <a href="{{ url_for('delete_room', room_id=room.room_id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

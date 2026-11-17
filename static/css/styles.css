@@ -1,0 +1,23 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  .card {
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Adjust navigation link colors on hover */
+  .nav-link:hover {
+    color: #ffc107;
+  }
+  
+  /* Customize footer */
+  footer {
+    background-color: #343a40;
+  }
+  

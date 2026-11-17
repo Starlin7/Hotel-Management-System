@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Admin - Invoices{% endblock %}
+{% block content %}
+<h2 class="mb-4">Manage Invoices</h2>
+
+<!-- Form to Add New Invoice -->
+<form action="{{ url_for('add_invoice') }}" method="post" class="mb-4">
+  <div class="row g-3">
+    <div class="col-md-3">
+      <input type="text" name="invoice_id" class="form-control" placeholder="Invoice ID" required>
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="reservation_id" class="form-control" placeholder="Reservation ID" required>
+    </div>
+    <div class="col-md-2">
+      <input type="number" step="0.01" name="total_amount" class="form-control" placeholder="Total Amount" required>
+    </div>
+    <div class="col-md-2">
+      <input type="date" name="issued_date" class="form-control" required>
+    </div>
+    <div class="col-md-2">
+      <input type="date" name="due_date" class="form-control" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Add Invoice</button>
+</form>
+
+<!-- Table Listing Invoices -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Invoice ID</th>
+      <th>Reservation ID</th>
+      <th>Total Amount</th>
+      <th>Issued Date</th>
+      <th>Due Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for inv in invoices %}
+    <tr>
+      <td>{{ inv.invoice_id }}</td>
+      <td>{{ inv.reservation_id }}</td>
+      <td>{{ inv.total_amount }}</td>
+      <td>{{ inv.issued_date }}</td>
+      <td>{{ inv.due_date }}</td>
+      <td>
+        <a href="#" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

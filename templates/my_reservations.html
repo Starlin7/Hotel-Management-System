@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}My Reservations{% endblock %}
+{% block content %}
+<div class="container my-4">
+  <h2>My Reservations</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Reservation ID</th>
+        <th>Room ID</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for res in reservations %}
+      <tr>
+        <td>{{ res.reservation_id }}</td>
+        <td>{{ res.room_id }}</td>
+        <td>{{ res.check_in_date }}</td>
+        <td>{{ res.check_out_date }}</td>
+        <td>{{ res.amount }}</td>
+        <td>{{ res.status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

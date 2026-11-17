@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Reserve Room{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow">
+      <div class="card-header bg-success text-white">
+        <h4>Reserve Room {{ room_id }}</h4>
+      </div>
+      <div class="card-body">
+        <form method="post" action="{{ url_for('reserve', room_id=room_id) }}">
+          <div class="mb-3">
+            <label for="check_in_date" class="form-label">Check-In Date:</label>
+            <input type="date" class="form-control" name="check_in_date" required>
+          </div>
+          <div class="mb-3">
+            <label for="check_out_date" class="form-label">Check-Out Date:</label>
+            <input type="date" class="form-control" name="check_out_date" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Reserve Now</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

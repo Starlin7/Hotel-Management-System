@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Edit Employee{% endblock %}
+{% block content %}
+<h2>Edit Employee</h2>
+<form action="{{ url_for('edit_employee', employee_id=employee.employee_id) }}" method="post">
+  <div class="mb-3">
+    <label class="form-label">User ID:</label>
+    <input type="text" class="form-control" name="user_id" value="{{ employee.user_id }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Department ID:</label>
+    <input type="text" class="form-control" name="department_id" value="{{ employee.department_id }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Position:</label>
+    <input type="text" class="form-control" name="position" value="{{ employee.position }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Hire Date:</label>
+    <input type="date" class="form-control" name="hire_date" value="{{ employee.hire_date }}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Update Employee</button>
+</form>
+{% endblock %}

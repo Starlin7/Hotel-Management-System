@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Admin - Room Types{% endblock %}
+{% block content %}
+<h2 class="mb-4">Manage Room Types</h2>
+
+<!-- Form to Add New Room Type -->
+<form action="{{ url_for('add_room_type') }}" method="post" class="mb-4">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <input type="text" class="form-control" name="room_type_id" placeholder="Room Type ID" required>
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" name="type_name" placeholder="Type Name" required>
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" name="description" placeholder="Description" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Add Room Type</button>
+</form>
+
+<!-- Display Existing Room Types -->
+<div class="row">
+  {% for rt in room_types %}
+  <div class="col-md-4 mb-4">
+    <div class="card shadow">
+      <img src="{{ url_for('static', filename='images/room_type_default.jpg') }}" class="card-img-top" alt="Room Type">
+      <div class="card-body">
+        <h5 class="card-title">{{ rt.type_name }}</h5>
+        <p class="card-text">{{ rt.description }}</p>
+        <a href="{{ url_for('edit_room_type', room_type_id=rt.room_type_id) }}" class="btn btn-warning btn-sm">Edit</a>
+        <a href="{{ url_for('delete_room_type', room_type_id=rt.room_type_id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

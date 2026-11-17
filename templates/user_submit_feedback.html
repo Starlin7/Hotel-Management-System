@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Submit Feedback{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow">
+      <div class="card-header bg-success text-white">
+        <h4>Submit Feedback</h4>
+      </div>
+      <div class="card-body">
+        <form action="{{ url_for('user_submit_feedback') }}" method="post">
+          <div class="mb-3">
+            <label for="reservation_id" class="form-label">Reservation ID:</label>
+            <input type="text" class="form-control" name="reservation_id" placeholder="Enter your Reservation ID" required>
+          </div>
+          <div class="mb-3">
+            <label for="rating" class="form-label">Rating (1-5):</label>
+            <input type="number" class="form-control" name="rating" min="1" max="5" required>
+          </div>
+          <div class="mb-3">
+            <label for="comments" class="form-label">Comments:</label>
+            <textarea class="form-control" name="comments" rows="4" placeholder="Your comments here" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Submit Feedback</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

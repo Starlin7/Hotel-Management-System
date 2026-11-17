@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="text-center">
+  <h2>Admin Dashboard</h2>
+  <p>Welcome, {{ session.admin.email }}!</p>
+  <div class="row mt-4">
+    <!-- Card for Total Rooms -->
+    <div class="col-md-6 mb-3">
+      <div class="card text-white bg-info shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Rooms</h5>
+          <p class="card-text display-4">{{ total_rooms }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Card for Reservations -->
+    <div class="col-md-6 mb-3">
+      <div class="card text-white bg-warning shadow">
+        <div class="card-body">
+          <h5 class="card-title">Reservations</h5>
+          <p class="card-text display-4">{{ total_reservations }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-4">
+    <a href="{{ url_for('admin_room_types') }}" class="btn btn-primary me-2 mb-2">Manage Room Types</a>
+    <a href="{{ url_for('admin_rooms') }}" class="btn btn-primary me-2 mb-2">Manage Rooms</a>
+    <a href="{{ url_for('admin_employees') }}" class="btn btn-primary me-2 mb-2">Manage Employees</a>
+    <a href="{{ url_for('admin_feedback') }}" class="btn btn-primary me-2 mb-2">Manage Feedback</a>
+    <a href="{{ url_for('admin_discounts') }}" class="btn btn-primary me-2 mb-2">Manage Discount</a>
+    <a href="{{ url_for('admin_hotel_policies') }}" class="btn btn-primary me-2 mb-2">Manage Policy</a>
+    <a href="{{ url_for('admin_housekeeping') }}" class="btn btn-primary me-2 mb-2">Manage Housekeeping</a>
+    <a href="{{ url_for('admin_payments') }}" class="btn btn-primary me-2 mb-2">Manage Payments</a>
+    <a href="{{ url_for('admin_invoices') }}" class="btn btn-primary me-2 mb-2">Manage Invoices</a>
+    <a href="{{ url_for('admin_services') }}" class="btn btn-primary me-2 mb-2">Manage Services</a>
+  </div>
+  
+</div>
+{% endblock %}

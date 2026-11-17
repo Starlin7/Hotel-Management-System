@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Available Rooms{% endblock %}
+{% block content %}
+<h2 class="mb-4">Available Rooms</h2>
+<div class="row">
+  {% for room in rooms %}
+  <div class="col-md-4 mb-4">
+    <div class="card h-100 shadow">
+      <!-- Use a default room image; in a real app, you might have room-specific images -->
+      <img src="{{ url_for('static', filename='images/room_default.jpg') }}" class="card-img-top" alt="Room Image">
+      <div class="card-body">
+        <h5 class="card-title">Room {{ room.room_number }}</h5>
+        <p class="card-text">
+          Type: {{ room.room_type_id }}<br>
+          Capacity: {{ room.capacity }}<br>
+          Price/Night: ₹{{ room.price_per_night }}
+        </p>
+      </div>
+      <div class="card-footer">
+        <a href="{{ url_for('reserve', room_id=room.room_id) }}" class="btn btn-success w-100">Reserve Now</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

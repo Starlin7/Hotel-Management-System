@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Edit Room Type{% endblock %}
+{% block content %}
+<h2>Edit Room Type</h2>
+<form action="{{ url_for('edit_room_type', room_type_id=room_type.room_type_id) }}" method="post">
+  <div class="mb-3">
+    <label class="form-label">Type Name:</label>
+    <input type="text" class="form-control" name="type_name" value="{{ room_type.type_name }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Description:</label>
+    <textarea class="form-control" name="description" rows="3" required>{{ room_type.description }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Update Room Type</button>
+</form>
+{% endblock %}

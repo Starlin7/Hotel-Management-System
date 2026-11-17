@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Admin - Feedback{% endblock %}
+{% block content %}
+<h2 class="mb-4">Guest Feedback</h2>
+
+<!-- Table Listing Feedback -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Feedback ID</th>
+      <th>Reservation ID</th>
+      <th>Rating</th>
+      <th>Comments</th>
+      <th>Feedback Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for fb in feedback %}
+    <tr>
+      <td>{{ fb.feedback_id }}</td>
+      <td>{{ fb.reservation_id }}</td>
+      <td>{{ fb.rating }}</td>
+      <td>{{ fb.comments }}</td>
+      <td>{{ fb.feedback_date }}</td>
+      <td>
+        <a href="#" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Admin - Discounts{% endblock %}
+{% block content %}
+<h2 class="mb-4">Manage Discounts</h2>
+
+<!-- Form to Add New Discount -->
+<form action="{{ url_for('add_discount') }}" method="get" class="mb-4">
+  <div class="row g-3">
+    <div class="col-md-3">
+      <input type="text" name="discount_id" class="form-control" placeholder="Discount ID" required>
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="discount_code" class="form-control" placeholder="Discount Code" required>
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="description" class="form-control" placeholder="Description" required>
+    </div>
+    <div class="col-md-3">
+      <input type="number" step="0.01" name="discount_percentage" class="form-control" placeholder="Percentage" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3">Add Discount</button>
+</form>
+
+<!-- Table Listing Discounts -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Discount ID</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Percentage</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for disc in discounts %}
+    <tr>
+      <td>{{ disc.discount_id }}</td>
+      <td>{{ disc.discount_code }}</td>
+      <td>{{ disc.description }}</td>
+      <td>{{ disc.discount_percentage }}</td>
+      <td>
+        <a href="#" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
